@@ -22,8 +22,7 @@ if(isset($_POST['submit']))
     $selectionMgr = $_POST['selectionMGR'];
     echo $selectionMgr;
     $sql="INSERT into emp (ENAME, JOBID_FK, MGR, HIREDATE, SAL, COMM, DEPTNO_FK) VALUES 
-    ('$Ename', SELECT JOBID FROM job WHERE JOBNAME=$selectionJob, SELECT EMPNO FROM emp WHERE ENAME=$selectionMgr ,
-    '$HireDate', '$Salary', '$commision', SELECT DEPTNO FROM dept WHERE DNAME=$selectionDept)";
+    ('$Ename', '$selectionJob', '$selectionMgr' ,'$HireDate', '$Salary', '$commision', '$selectionDept')";
     $resultset = $connection->prepare($sql);
     $resultset->execute();
 }
@@ -42,26 +41,35 @@ $connection=null;
         <input type="text" id="ENAME" name="ENAME"><br>
         <label for="JOBID">Employee Job:</label><br>
         <select name="selectionJOB">
-            <option value="CLERK">CLERK</option>
-            <option value="SALESMAN">SALESMAN</option>
-            <option value="MANAGER">MANAGER</option>
-            <option value="PRESIDENT">PRESIDENT</option>
-            <option value="ANALYST">ANALYST</option>
-        </select>
-        <br>
-        <label for="MGR">select Manager:</label><br>
-        <select name="selectionMGR">
-
         <?php
         $connection = new PDO("mysql:host=localhost;dbname=emloyeedb", 'root', '');  
-            $sql="SELECT ENAME FROM emp";
+            $sql="SELECT * FROM job";
             $resultset = $connection->prepare($sql);
             $resultset->execute();   
             $rows = $resultset->fetchAll(PDO::FETCH_ASSOC);
             foreach($rows as $row)
             {
                 ?>
-                <option><?php echo $row['ENAME']; ?></option>
+                <option value="<?php echo $row['JOBID']; ?>"><?php echo $row['JOBNAME']; ?></option>
+                <?php
+
+            }
+            ?>
+            </select>
+        <br>
+        <label for="MGR">select Manager:</label><br>
+        <select name="selectionMGR">
+
+        <?php
+        $connection = new PDO("mysql:host=localhost;dbname=emloyeedb", 'root', '');  
+            $sql="SELECT * FROM emp";
+            $resultset = $connection->prepare($sql);
+            $resultset->execute();   
+            $rows = $resultset->fetchAll(PDO::FETCH_ASSOC);
+            foreach($rows as $row)
+            {
+                ?>
+                <option value="<?php echo $row['EMPNO']; ?>"><?php echo $row['ENAME']; ?></option>
                 <?php
 
             }
@@ -83,14 +91,14 @@ $connection=null;
 
             <?php
             $connection = new PDO("mysql:host=localhost;dbname=emloyeedb", 'root', '');  
-                $sql="SELECT DNAME FROM dept";
+                $sql="SELECT * FROM dept";
                 $resultset = $connection->prepare($sql);
                 $resultset->execute();   
                 $rows = $resultset->fetchAll(PDO::FETCH_ASSOC);
                 foreach($rows as $row)
                 {
                     ?>
-                    <option><?php echo $row['DNAME']; ?></option>
+                    <option value="<?php echo $row['DEPTNO']; ?>"><?php echo $row['DNAME']; ?></option>
                     <?php
 
                 }
