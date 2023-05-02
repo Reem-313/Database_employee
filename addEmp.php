@@ -22,8 +22,8 @@ if(isset($_POST['submit']))
     $selectionMgr = $_POST['selectionMGR'];
     echo $selectionMgr;
     $sql="INSERT into emp (ENAME, JOBID_FK, MGR, HIREDATE, SAL, COMM, DEPTNO_FK) VALUES 
-    ('$Ename', 'SELECT JOBID FROM job WHERE JOBNAME=$selectionJob', 'SELECT EMPNO FROM emp WHERE ENAME=$selectionMgr' ,
-    '$HireDate', '$Salary', '$commision', 'SELECT DEPTNO FROM dept WHERE DNAME=$selectionDept')";
+    ('$Ename', SELECT JOBID FROM job WHERE JOBNAME=$selectionJob, SELECT EMPNO FROM emp WHERE ENAME=$selectionMgr ,
+    '$HireDate', '$Salary', '$commision', SELECT DEPTNO FROM dept WHERE DNAME=$selectionDept)";
     $resultset = $connection->prepare($sql);
     $resultset->execute();
 }
@@ -61,7 +61,7 @@ $connection=null;
             foreach($rows as $row)
             {
                 ?>
-                <option value="A"><?php echo $row['ENAME']; ?></option>
+                <option><?php echo $row['ENAME']; ?></option>
                 <?php
 
             }
@@ -90,7 +90,7 @@ $connection=null;
                 foreach($rows as $row)
                 {
                     ?>
-                    <option value="A"><?php echo $row['DNAME']; ?></option>
+                    <option><?php echo $row['DNAME']; ?></option>
                     <?php
 
                 }
