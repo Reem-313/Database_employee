@@ -6,9 +6,9 @@ $connection = new PDO("mysql:host=localhost;dbname=emloyeedb", 'root', '');
 
 if(isset($_POST['submit']))
 {
-    $DeptName= $_POST['DeptName'];
+    $Deptname= $_POST['DeptName'];
     $location= $_POST['location'];
-    $sql="INSERT into Dept (DNAME, LOC) VALUES ('$DeptName', '$location')";
+    $sql="INSERT into Dept (DNAME, LOC) VALUES ('$Deptname', '$location')";
     $resultset = $connection->prepare($sql);
     $resultset->execute();
 }
