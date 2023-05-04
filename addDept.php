@@ -1,14 +1,14 @@
 <?php 
 /** Connection with postgresql **/
 /** Connection with mysql **/
-$connection = new PDO("mysql:host=localhost;dbname=emloyeedb", 'root', '');  
+$connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');  
 /** Preparation and execution of the query **/
 
 if(isset($_POST['submit']))
 {
     $Deptname= $_POST['DeptName'];
     $location= $_POST['location'];
-    $sql="INSERT into Dept (DNAME, LOC) VALUES ('$Deptname', '$location')";
+    $sql="INSERT into Dept (DNAME, location) VALUES ('$Deptname', '$location')";
     $resultset = $connection->prepare($sql);
     $resultset->execute();
 }
@@ -25,7 +25,7 @@ $connection=null;
     <form method="post" action="" autocomplete="off">
         <label for="DeptName">Department:</label><br>
         <input type="text" id="DeptName" name="DeptName" required value=""><br>
-        <label for="location">last name:</label><br>
+        <label for="location">Location:</label><br>
         <input type="text" id="location" name="location" required value=""><br>
         <input type="submit" name="submit"><br>
     </form>
