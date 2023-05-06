@@ -56,10 +56,6 @@ INSERT INTO `Car` (`CarID`, `carMake`, `carModel`, `carColor`) VALUES
 
 INSERT INTO employee (EmployeeID, ENAME, MGR, HIREDATE, Salary, Commision, DeptID, JobID, addressID, carID) VALUES
 (7369, 'SMITH', 7902, '1987-12-17', 800, NULL, 20, 1, 1, NULL),
-(7370, 'Kieran', 7902, '2023-05-09', 50000, 300, 41, 4, 5, 1),
-(7371, 'Reem', 7369, '2023-05-06', 3000, 100, 10, 1, 1, 1),
-(7372, 'Josh', 7370, '2023-03-08', 1000, 0, 10, 2, 5, 0),
-(7373, 'Henry', 7369, '2023-05-13', 2000, 0, 10, 1, 2, 0),
 (7499, 'ALLEN', 7698, '1981-02-20', 1600, 300, 30, 2, 6, NULL),
 (7521, 'WARD', 7698, '1981-02-22', 1250, 500, 30, 2, 2, NULL),
 (7566, 'JONES', 7839, '1981-04-02', 2975, NULL, 20, 4, 1, 2),
