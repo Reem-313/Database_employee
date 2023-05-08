@@ -1,0 +1,28 @@
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+
+
+count how many people work in each department 
+
+CREATE VIEW sum_of_departments AS
+SELECT D.DNAME, count(E.DeptID)
+FROM employee E, dept D
+WHERE E.DeptID = D.DEPTNO
+GROUP BY DeptID
+
+who earned a wage below 1000 and received a commission
+
+CREATE VIEW commision_and_below_1000 AS
+SELECT EName, Salary, Commision, carID
+FROM employee
+WHERE Salary < 1000 AND Commision > 0 AND carID IS NOT NULL
+GROUP BY EName
+
+
+CREATE VIEW longest member of staff
+SELECT e.ENAME, Max(HireDate), j.JOBTitle, e.Salary, e.MGR, d.DNAME, c.carMake, c.carModel
+FROM employee e, dept d, car c, job j
+WHERE e.DeptID = d.DEPTNO AND e.CarID = c.CarID AND e.JobID = j.JOBID
+GROUP BY e.HireDate

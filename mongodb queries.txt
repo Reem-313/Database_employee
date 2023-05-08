@@ -1,0 +1,20 @@
+Finds everyone with manager job, commision of more than or equal to 2000,
+displays their name, commision, car make and model
+sorts them by employe name
+Groups by employee name 
+
+db.employees.find({"Dept.DNAME":"ACCOUNTING","HIREDATE":{$gte: "1981-06-01",$lt: "1982-06-01"}},{"ENAME":1,"HIREDATE":1,"Salary":1}).sort({"Salary":1})
+
+**doesnt work
+varMatch = {$match:{"Job":"MANAGER","Salary":{$gte:2000}}}
+varSort = {$sort:{"ENAME":1}}
+db.employees.aggregate([varMatch,varSort])
+**
+
+Finds everyone with a job in accounting, and hired between 1981/6/1 and 1982/6/1
+displays by their address
+sorts by their salary
+
+varMatch1 = {$match:{"Dept.DNAME":"ACCOUNTING","HIREDATE":{$gte: newISODate("1981-06-01"),$lt: new ISODate("1982-06-01")}}
+varGroup1 = {$group:{"address":"address"}}
+varSort1 = {$sort:{"Salary":1}}
