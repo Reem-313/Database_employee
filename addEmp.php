@@ -8,26 +8,30 @@ $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');
 if(isset($_POST['submit']))
 {
     $Ename= $_POST['ENAME'];
-   // $addressRoad= $_POST['addRoad'];
-   // $addressCity= $_POST['addCity'];
    $selectionADD = $_POST['selectionAdd'];
     $selectionJob = $_POST['selectionJOB'];
     $HireDate= $_POST['HIREDATE'];
     $Salary= $_POST['SAL'];
     $commision= $_POST['COMM'];
-    $selectionDept = $_POST['selectionDEPT'];
+ $selectionDept = $_POST['selectionDEPT'];
     $selectionMgr = $_POST['selectionMGR'];
-    $selectioncar = $_POST['selectionCar'];
-    if($selectioncar='')
+    $selectioncar = $_POST['selectionCar'];   
+    if($selectioncar='null')
     {
-        
+        $sql="INSERT into employee (ENAME, MGR, HIREDATE, Salary, Commision, DeptID, JobID, addressID, carID) VALUES 
+        ('$Ename', '$selectionMgr' ,'$HireDate', '$Salary', '$commision', '$selectionDept', '$selectionJob', '$selectionADD', NULL)";
+        $resultset = $connection->prepare($sql);
+        $resultset->execute();
+    }
+    else
+    {
+        $sql="INSERT into employee (ENAME, MGR, HIREDATE, Salary, Commision, DeptID, JobID, addressID, carID) VALUES 
+        ('$Ename', '$selectionMgr' ,'$HireDate', '$Salary', '$commision', '$selectionDept', '$selectionJob', '$selectionADD', '$selectioncar')";
+        $resultset = $connection->prepare($sql);
+        $resultset->execute();
     }
 
 
-    $sql="INSERT into employee (ENAME, MGR, HIREDATE, Salary, Commision, DeptID, JobID, addressID, carID) VALUES 
-    ('$Ename', '$selectionMgr' ,'$HireDate', '$Salary', '$commision', '$selectionDept', '$selectionJob', '$selectionADD', '$selectioncar')";
-    $resultset = $connection->prepare($sql);
-    $resultset->execute();
 }
 /** Disconnection **/
 $connection=null;
@@ -107,7 +111,7 @@ $connection=null;
             <label for="SAL">Salary:</label><br>
             <input type="text" id="SAL" name="SAL"><br>
 
-            <label for="COMM">Commsion:</label><br>
+            <label for="COMM">Commision:</label><br>
             <input type="text" id="COMM" name="COMM"><br>
 
             <label for="dept">Employee Department:</label><br>
@@ -132,7 +136,7 @@ $connection=null;
 
                 <label for="car">Do you want to assign the employee a car?</label><br>
             <select name="selectionCar">
-            <option value=''>NULL</option>
+            <option value='null'>NULL</option>
 
             <?php
             $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');  
