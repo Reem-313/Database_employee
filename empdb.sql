@@ -1,13 +1,52 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 06, 2023 at 04:35 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `empdb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
 CREATE TABLE `address` (
   `addressID` int(11) NOT NULL,
   `City` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `address`
+--
 
 INSERT INTO `address` (`addressID`, `City`) VALUES
 (1, 'Canterbury'),
 (2, 'Ramsgate'),
 (5, 'Folkstone'),
 (6, 'Ashford');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `car`
+--
 
 CREATE TABLE `car` (
   `CarID` int(11) NOT NULL,
@@ -16,10 +55,20 @@ CREATE TABLE `car` (
   `carColor` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `car`
+--
+
 INSERT INTO `car` (`CarID`, `carMake`, `carModel`, `carColor`) VALUES
 (1, 'Volkswagen', 'Quantum', 'Blue'),
 (2, 'Kia', 'SUV', 'Grey'),
 (3, 'Volkswagen', 'Golf', 'Red');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dept`
+--
 
 CREATE TABLE `dept` (
   `DEPTNO` int(11) NOT NULL,
@@ -27,12 +76,22 @@ CREATE TABLE `dept` (
   `Location` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `dept`
+--
+
 INSERT INTO `dept` (`DEPTNO`, `DNAME`, `Location`) VALUES
 (10, 'ACCOUNTING', 'NEW-YORK'),
 (20, 'RESEARCH', 'DALLAS'),
 (30, 'SALES', 'CHICAGO'),
 (40, 'OPERATIONS', 'BOSTON'),
 (41, 'DEVELOPMENT', 'LONDON');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee`
+--
 
 CREATE TABLE `employee` (
   `EmployeeID` int(11) NOT NULL,
@@ -46,6 +105,10 @@ CREATE TABLE `employee` (
   `addressID` int(11) NOT NULL,
   `carID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `employee`
+--
 
 INSERT INTO `employee` (`EmployeeID`, `ENAME`, `MGR`, `HIREDATE`, `Salary`, `Commision`, `DeptID`, `JobID`, `addressID`, `carID`) VALUES
 (7369, 'SMITH', 7902, '1987-12-17', 800, NULL, 20, 1, 1, NULL),
@@ -68,10 +131,20 @@ INSERT INTO `employee` (`EmployeeID`, `ENAME`, `MGR`, `HIREDATE`, `Salary`, `Com
 (7936, 'Amy', 7521, '2023-04-20', 3000, 0, 10, 4, 1, 2),
 (7937, 'Mark', 7839, '2022-12-16', 5000, 0, 40, 4, 6, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job`
+--
+
 CREATE TABLE `job` (
   `JOBID` int(11) NOT NULL,
   `JOBTitle` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `job`
+--
 
 INSERT INTO `job` (`JOBID`, `JOBTitle`) VALUES
 (1, 'CLERK'),
@@ -80,15 +153,31 @@ INSERT INTO `job` (`JOBID`, `JOBTitle`) VALUES
 (6, 'ANALYST'),
 (8, 'PRESIDENT');
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `address`
+--
 ALTER TABLE `address`
   ADD PRIMARY KEY (`addressID`);
 
+--
+-- Indexes for table `car`
+--
 ALTER TABLE `car`
   ADD PRIMARY KEY (`CarID`);
 
+--
+-- Indexes for table `dept`
+--
 ALTER TABLE `dept`
   ADD PRIMARY KEY (`DEPTNO`);
 
+--
+-- Indexes for table `employee`
+--
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`EmployeeID`),
   ADD KEY `MGR_FK` (`MGR`),
@@ -97,26 +186,60 @@ ALTER TABLE `employee`
   ADD KEY `AddressID` (`addressID`),
   ADD KEY `carID` (`carID`);
 
+--
+-- Indexes for table `job`
+--
 ALTER TABLE `job`
   ADD PRIMARY KEY (`JOBID`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `address`
+--
 ALTER TABLE `address`
   MODIFY `addressID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
+--
+-- AUTO_INCREMENT for table `car`
+--
 ALTER TABLE `car`
   MODIFY `CarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
+--
+-- AUTO_INCREMENT for table `dept`
+--
 ALTER TABLE `dept`
   MODIFY `DEPTNO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
+--
+-- AUTO_INCREMENT for table `employee`
+--
 ALTER TABLE `employee`
   MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7938;
 
+--
+-- AUTO_INCREMENT for table `job`
+--
 ALTER TABLE `job`
   MODIFY `JOBID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `employee`
+--
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`JobID`) REFERENCES `job` (`JOBID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`addressID`) REFERENCES `address` (`addressID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `employee_ibfk_3` FOREIGN KEY (`DeptID`) REFERENCES `dept` (`DEPTNO`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `employee_ibfk_4` FOREIGN KEY (`carID`) REFERENCES `car` (`CarID`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
