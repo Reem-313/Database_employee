@@ -21,19 +21,27 @@ if(isset($_POST['submit']))
     $resultset = $connection->prepare($sql);
     $resultset->execute();   
     $rows = $resultset->fetchAll(PDO::FETCH_ASSOC);
-    $deptname=$rows['DNAME'];
-    $deptlocation=$rows['location'];
+    foreach($rows as $row)
+    {
+        $deptname=$row['DNAME'];
+        $deptlocation=$row['Location'];
+
+    }
 
     $sql="SELECT * FROM `car` WHERE CarID ='$selectioncar'";
     $resultset = $connection->prepare($sql);
     $resultset->execute();   
-    $rows = $resultset->fetchAll(PDO::FETCH_ASSOC);
-    $carmake=$rows['carMake'];
-    $carmodel=$rows['carModel'];
-    $carcolor=$rows['carColor'];
+    $row = $resultset->fetchAll(PDO::FETCH_ASSOC);
+    foreach($row as $rows)
+    {
+        $carmake=$rows['carMake'];
+        $carmodel=$rows['carModel'];
+        $carcolor=$rows['carColor'];
+    }
+
     
-    $dept= array("DNAME" => $deptname, "location" => $deptlocation);
-    $car= array("carMake"=>$carmake, "carModel"=>$carmodel, "carColor"=>$carcolor);
+    $dept= (object)array("DNAME" => $deptname, "Location" => $deptlocation);
+    $car= (object)array("carMake"=>$carmake, "carModel"=>$carmodel, "carColor"=>$carcolor);
     $document = array( 
         "ENAME" => $Ename, 
         "MGR" => $selectionMgr, 
