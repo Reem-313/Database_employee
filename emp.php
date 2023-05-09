@@ -28,31 +28,52 @@ if(isset($_POST['submit']))
 
     }
 
-    $sql="SELECT * FROM `car` WHERE CarID ='$selectioncar'";
-    $resultset = $connection->prepare($sql);
-    $resultset->execute();   
-    $row = $resultset->fetchAll(PDO::FETCH_ASSOC);
-    foreach($row as $rows)
+    if($selectioncar='null')
     {
-        $carmake=$rows['carMake'];
-        $carmodel=$rows['carModel'];
-        $carcolor=$rows['carColor'];
+        $dept= (object)array("DNAME" => $deptname, "Location" => $deptlocation);
+        $document = array( 
+            "ENAME" => $Ename, 
+            "MGR" => $selectionMgr, 
+            "HIREDATE" => $HireDate,
+            "Salary" => $Salary,
+            "Commision" => $commision,
+            "Dept"=> $dept,
+            "Job"=>$selectionJob,
+            "address" => $selectionADD,
+            "car"=> NULL
+     );
+    }
+    else
+    {
+        $sql="SELECT * FROM `car` WHERE CarID ='$selectioncar'";
+        $resultset = $connection->prepare($sql);
+        $resultset->execute();   
+        $row = $resultset->fetchAll(PDO::FETCH_ASSOC);
+        foreach($row as $rows)
+        {
+            $carmake=$rows['carMake'];
+            $carmodel=$rows['carModel'];
+            $carcolor=$rows['carColor'];
+            $dept= (object)array("DNAME" => $deptname, "Location" => $deptlocation);
+            $car= (object)array("carMake"=>$carmake, "carModel"=>$carmodel, "carColor"=>$carcolor);
+            $document = array( 
+                "ENAME" => $Ename, 
+                "MGR" => $selectionMgr, 
+                "HIREDATE" => $HireDate,
+                "Salary" => $Salary,
+                "Commision" => $commision,
+                "Dept"=> $dept,
+                "Job"=>$selectionJob,
+                "address" => $selectionADD,
+                "car"=> $car
+         );
+        }
     }
 
+
+
     
-    $dept= (object)array("DNAME" => $deptname, "Location" => $deptlocation);
-    $car= (object)array("carMake"=>$carmake, "carModel"=>$carmodel, "carColor"=>$carcolor);
-    $document = array( 
-        "ENAME" => $Ename, 
-        "MGR" => $selectionMgr, 
-        "HIREDATE" => $HireDate,
-        "Salary" => $Salary,
-        "Commision" => $commision,
-        "Dept"=> $dept,
-        "Job"=>$selectionJob,
-        "address" => $selectionADD,
-        "car"=> $car
- );
+
   
  $collection->insertOne($document);
 }
