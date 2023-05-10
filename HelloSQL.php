@@ -20,11 +20,9 @@
             </style>
     <div class="container">
         <button onclick="window.location.href='home.php'" class="btn btn-primary btn-md">GO BACK TO THE PREIVOUS PAGE</button><br>
+    </div>
 
-</div>
-        <!-- <h1>Hello there</h1>
-        <button onclick="window.location.href='home.php'" class="btn btn-primary btn-md">GO BACK TO THE PREIVOUS PAGE</button><br> -->
-
+    <!-- Current Department Dataset -->
         <div class="container card border-primary mb-3">
             <div class="card-header">DEPARTMENTS</div>
             <div class="card-body">
@@ -40,18 +38,15 @@
                         /** Connection with postgresql **/
                         /** Connection with mysql **/
                         //https://stackoverflow.com/questions/6882633/php-get-input-radio-selection-data-and-insert-into-mysql-table
-                        $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');  
-                        /** Preparation and execution of the query **/           
+                        $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');
+                        /** Preparation and execution of the query **/
                             $sql="SELECT * FROM dept";
-                                
                                 $resultset = $connection->prepare($sql);
                                 $resultset->execute();
                                 $rows = $resultset->fetchAll(PDO::FETCH_ASSOC);
                                 foreach ($rows as $row) {
-
                                     echo "<tr><td>".$row['DNAME']."</td><td>".$row['Location'] ."</td></tr>";
-                                    
-                                }                                
+                                }
                         /** Disconnection **/
                         $connection=null;
                         ?>
@@ -59,16 +54,16 @@
                 </table>
             </div>
             <div class="form-group mx-sm-3 mb-2">
-            <button onclick="window.location.href='addDept.php'" class="btn btn-primary btn-md">Click me to add department to sql</button>
+                <button onclick="window.location.href='addDept.php'" class="btn btn-primary btn-md">Click me to add department to sql</button>
             </div>
         </div>
+        <!-- Current Employee Dataset -->
         <div class="container card border-primary mb-3">
             <div class="card-header">EMPLOYEES</div>
             <div class="card-body">
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-
                             <th>Employee Name</th>
                             <th>HireDate</th>
                             <th>Job</th>
@@ -83,17 +78,15 @@
                         <?php
                         /** Connection with postgresql **/
                         /** Connection with mysql **/
-                        $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');  
+                        $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');
                         /** Preparation and execution of the query **/
                             $sql="SELECT * FROM employee";
-                                
                                 $resultset = $connection->prepare($sql);
                                 $resultset->execute();
                                 $rows = $resultset->fetchAll(PDO::FETCH_ASSOC);
                                 foreach ($rows as $row) {
-                                        
-                                        echo "<tr><td>".$row['ENAME']."</td><td>".$row['HIREDATE'] ."</td><td>".$row['JobID']."</td><td>".$row['Salary']."</td><td>".$row['Commision']."</td><td>".$row['DeptID']."</td><td>".$row['MGR']."</td><td>".$row['carID']."</td></tr>";                                    
-                                }                              
+                                    echo "<tr><td>".$row['ENAME']."</td><td>".$row['HIREDATE'] ."</td><td>".$row['JobID']."</td><td>".$row['Salary']."</td><td>".$row['Commision']."</td><td>".$row['DeptID']."</td><td>".$row['MGR']."</td><td>".$row['carID']."</td></tr>";
+                                }
                         /** Disconnection **/
                         $connection=null;
                         ?>
@@ -104,19 +97,20 @@
             </div>
             </div>
         </div>
+        <!-- Buttons to access new pages for each query -->
         <div class="container card border-primary mb-3">
             <div class="card-header">Query</div>
             <div class="card-body">
                 <div class="form-group mx-sm-3 mb-2">
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
-                    <button onclick="window.location.href='sqlquery.php'" class="btn btn-outline-primary btn-lg">Click me to show query 1 in sql</button><br>
+                    <button onclick="window.location.href='sqlquery.php'" class="btn btn-outline-primary btn-lg">All Employees</button><br>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
-                    <button onclick="window.location.href='sqlquery2.php'" class="btn btn-outline-primary btn-lg">Click me to show query 2 in sql</button><br>
+                    <button onclick="window.location.href='sqlquery2.php'" class="btn btn-outline-primary btn-lg">How Many People Work In Each Department?</button><br>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
-                    <button onclick="window.location.href='sqlquery1.php'" class="btn btn-outline-primary btn-lg">Click me to show query 3 in sql</button>
+                    <button onclick="window.location.href='sqlquery1.php'" class="btn btn-outline-primary btn-lg">Employees With Salary Over 1000, Commission Above 0 With A Company Car</button>
                 </div>
             </div>
         </div>

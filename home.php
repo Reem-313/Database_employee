@@ -20,6 +20,7 @@
             <div class="card-body">
                 <div class="form-group mx-sm-3 mb-2">
                 </div>
+                <!-- Access php or mongodb database depending on button pressed -->
                 <div class="form-group mx-sm-3 mb-2">
                     <button onclick="window.location.href='HelloSQL.php'"  class="btn btn-outline-primary btn-lg">Click here to work on SQL</button>
                 </div>

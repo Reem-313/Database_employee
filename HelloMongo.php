@@ -20,9 +20,9 @@
             </style>
     <div class="container">
         <button onclick="window.location.href='home.php'" class="btn btn-primary btn-md">GO BACK TO THE PREIVOUS PAGE</button><br>
-
-</div>
-        <div class="container card border-primary mb-3">
+    </div>
+    <!-- Current Department Dataset -->
+    <div class="container card border-primary mb-3">
             <div class="card-header">DEPARTMENTS</div>
             <div class="card-body">
                 <table class="table table-bordered table-hover">
@@ -37,12 +37,12 @@
                         require_once __dir__ . '/vendor/autoload.php';
                         $con = new MongoDB\Client("mongodb://localhost:27017");
                         $db = $con->EMPDB;
+                        /** Preparation and execution of the query **/
                         $collection = $db->Departments;
                         $cursor = $collection->find();
                         foreach ($cursor as $document) {
                             echo "<tr><td>".$document['DNAME']."</td><td>".$document['Location'] ."</td></tr>";
                         }
-
                         ?>
                     </tbody>
                 </table>
@@ -51,13 +51,13 @@
             <button onclick="window.location.href='addDeptMongo.php'" class="btn btn-primary btn-md">Click me to add department to MONGO</button>
             </div>
         </div>
+        <!-- Current Employee Dataset -->
         <div class="container card border-primary mb-3">
             <div class="card-header">EMPLOYEES</div>
             <div class="card-body">
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-
                             <th>Employee Name</th>
                             <th>Hire Date</th>
                             <th>Job</th>
@@ -72,6 +72,7 @@
                         require_once __dir__ . '/vendor/autoload.php';
                         $con = new MongoDB\Client("mongodb://localhost:27017");
                         $db = $con->EMPDB;
+                        /** Preparation and execution of the query **/
                         $collection = $db->EMPLOYEE;
                         $cursor = $collection->find();
                         foreach ($cursor as $document) {
@@ -85,6 +86,7 @@
             <button onclick="window.location.href='emp.php'" class="btn btn-primary btn-md">Click me to add employee to Mongo</button>
             </div>
         </div>
+        <!-- Buttons to access new pages for each query -->
         <div class="container card border-primary mb-3">
             <div class="card-header">Query</div>
             <div class="card-body">
