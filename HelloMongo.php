@@ -91,10 +91,10 @@
             <div class="card-header">Query</div>
             <div class="card-body">
                 <div class="form-group mx-sm-3 mb-2">
-                    <button onclick="window.location.href='query1.php'" class="btn btn-outline-primary btn-lg">Click me to show query 1</button>
+                    <button onclick="window.location.href='query1.php'" class="btn btn-outline-primary btn-lg">Employees That Work In Accounting, And Were Hired Between 1st June 1981 And 1st June 1982</button>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
-                    <button onclick="window.location.href='query2.php'" class="btn btn-outline-primary btn-lg">Click me to show query 2</button>
+                    <button onclick="window.location.href='query2.php'" class="btn btn-outline-primary btn-lg">Employed As A Manager, Have A Salary Of Over 2000 And Do Have A Company Car</button>
                 </div>
             </div>
         </div>

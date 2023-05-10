@@ -9,8 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     </head>
     <body>
-    <div class="container card border-primary mb-3">
-            <div class="card-header">DEPARTMENTS</div>
+        <div class="container card border-primary mb-3">
+            <div class="card-header">Employees With Salary Over 1000, Commission Above 0 With A Company Car</div>
             <div class="card-body">
                 <table class="table table-bordered table-hover">
                     <thead>
@@ -19,24 +19,19 @@
                             <th>Salary</th>
                             <th>Commision</th>
                             <th>Car ID</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                    <?php 
+                    <?php
                         /** Connection with postgresql **/
                         /** Connection with mysql **/
                         //https://stackoverflow.com/questions/6882633/php-get-input-radio-selection-data-and-insert-into-mysql-table
-                        $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');  
+                        $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');
                         /** Preparation and execution of the query **/
-
-
-
                             $sql="SELECT ENAME, Salary, Commision, carID
                             FROM employee
                             WHERE Salary > 1000 AND Commision > 0 AND carID IS NOT NULL
                             GROUP BY ENAME";
-                                
                                 $resultset = $connection->prepare($sql);
                                 $resultset->execute();
                                 $rows = $resultset->fetchAll(PDO::FETCH_ASSOC);
@@ -44,15 +39,12 @@
                                 {
                                     echo "<tr><td>".$row['ENAME']."</td><td>".$row['Salary'] ."</td><td>".$row['Commision'] ."</td><td>".$row['carID'] ."</td></tr>";
                                 }
-                                
-                                
-
-                            
-                        /** Disconnection **/
+                            /** Disconnection **/
                         $connection=null;
-                        ?>
+                    ?>
                     </tbody>
                 </table>
             </div>
+        </div>
     </boby>
 </html>

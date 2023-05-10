@@ -107,10 +107,10 @@
                     <button onclick="window.location.href='sqlquery.php'" class="btn btn-outline-primary btn-lg">All Employees</button><br>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
-                    <button onclick="window.location.href='sqlquery2.php'" class="btn btn-outline-primary btn-lg">How Many People Work In Each Department?</button><br>
+                    <button onclick="window.location.href='sqlquery2.php'" class="btn btn-outline-primary btn-lg">Employees With Salary Over 1000, Commission Above 0 With A Company Car</button><br>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
-                    <button onclick="window.location.href='sqlquery1.php'" class="btn btn-outline-primary btn-lg">Employees With Salary Over 1000, Commission Above 0 With A Company Car</button>
+                    <button onclick="window.location.href='sqlquery1.php'" class="btn btn-outline-primary btn-lg">How Many People Work In Each Department?</button>
                 </div>
             </div>
         </div>

@@ -8,8 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     </head>
     <body>
-    <div class="container card border-primary mb-3">
-            <div class="card-header">DEPARTMENTS</div>
+        <div class="container card border-primary mb-3">
+            <div class="card-header">Employees That Work In Accounting, And Were Hired Between 1st June 1981 And 1st June 1982</div>
             <div class="card-body">
                 <table class="table table-bordered table-hover">
                     <thead>
@@ -37,15 +37,10 @@
                         foreach ($result as $document) {
                             echo "<tr><td>".$document['ENAME']."</td><td>".$document['HIREDATE'] ."</td><td>".$document['Salary'] ."</td></tr>";
                         }
-
-                            // foreach($result as $person){
-                            //     echo $person['ENAME']."<br>";
-                            //     echo $person['HIREDATE']."<br>";
-                            //     echo $person['Salary']."<br>";
-                            // }
                     ?>
                     </tbody>
                 </table>
             </div>
+        </div>
     </boby>
 </html>
