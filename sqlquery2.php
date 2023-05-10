@@ -1,4 +1,3 @@
-// Purpose: To display the employees who have a car and a commision and a salary greater than 1000
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,6 +44,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="form-group mx-sm-3 mb-2">
+                    <button onclick="window.location.href='HelloSQL.php'" class="btn btn-primary btn-md">GO BACK TO THE PREIVOUS PAGE</button><br>
+                </div>
         </div>
     </boby>
 </html>

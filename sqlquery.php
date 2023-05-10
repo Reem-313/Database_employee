@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,15 +9,14 @@
     </head>
     <body>
         <div class="container card border-primary mb-3">
-            <div class="card-header">All Employees</div>
+            <div class="card-header">Total Salaries For Each Department</div>
             <div class="card-body">
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>HIRE DATE</th>
-                            <th>SALARY</th>
-                            <th>JOB TITLE</th>
+                            <th>Department</th>
+                            <th>Total Salary</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -28,23 +26,28 @@
                         //https://stackoverflow.com/questions/6882633/php-get-input-radio-selection-data-and-insert-into-mysql-table
                         $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');
                         /** Preparation and execution of the query **/
-                            $sql="SELECT e.ENAME, Max(HireDate), j.JOBTitle, e.Salary, e.MGR, d.DNAME, c.carMake, c.carModel
-                            FROM employee e, dept d, car c, job j
-                            WHERE e.DeptID = d.DEPTNO AND e.CarID = c.CarID AND e.JobID = j.JOBID
-                            GROUP BY e.HireDate";
+                            $sql="SELECT d.DNAME, sum(e.Salary)
+                            FROM employee e, dept d
+                            WHERE e.DeptID = d.DEPTNO
+                            GROUP BY DeptID";
                                 $resultset = $connection->prepare($sql);
                                 $resultset->execute();
                                 $rows = $resultset->fetchAll(PDO::FETCH_ASSOC);
                                 foreach($rows as $row)
                                 {
-                                    echo "<tr><td>".$row['ENAME']."</td><td>".$row['Max(HireDate)'] ."</td><td>".$row['JOBTitle'] ."</td><td>".$row['Salary'] ."</td><td>".$row['MGR'] ."</td><td>".$row['DNAME'] ."</td><td>".$row['carMake'] ."</td><td>".$row['carModel'] ."</td></tr>";
-                                }
+                                    echo "<tr>";
+                                    echo "<td>".$row['DNAME']."</td>";
+                                    echo "<td>".$row['sum(e.Salary)']."</td>";
+                                    echo "</tr>";                                }
                                 /** Disconnection **/
                         $connection=null;
                         ?>
                     </tbody>
                 </table>
             </div>
+            <div class="form-group mx-sm-3 mb-2">
+                    <button onclick="window.location.href='HelloSQL.php'" class="btn btn-primary btn-md">GO BACK TO THE PREIVOUS PAGE</button><br>
+                </div>
         </div>
     </boby>
 </html>

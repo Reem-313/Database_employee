@@ -41,6 +41,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="form-group mx-sm-3 mb-2">
+                    <button onclick="window.location.href='HelloMongo.php'" class="btn btn-primary btn-md">GO BACK TO THE PREIVOUS PAGE</button><br>
+                </div>
         </div>
     </boby>
 </html>

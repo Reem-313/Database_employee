@@ -99,12 +99,12 @@
         </div>
         <!-- Buttons to access new pages for each query -->
         <div class="container card border-primary mb-3">
-            <div class="card-header">Query</div>
+            <div class="card-header">Displaying special imformation about the employees</div>
             <div class="card-body">
                 <div class="form-group mx-sm-3 mb-2">
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
-                    <button onclick="window.location.href='sqlquery.php'" class="btn btn-outline-primary btn-lg">All Employees</button><br>
+                    <button onclick="window.location.href='sqlquery.php'" class="btn btn-outline-primary btn-lg">Total Salaries For Each Department</button><br>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
                     <button onclick="window.location.href='sqlquery2.php'" class="btn btn-outline-primary btn-lg">Employees With Salary Over 1000, Commission Above 0 With A Company Car</button><br>

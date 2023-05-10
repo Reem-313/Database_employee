@@ -64,7 +64,6 @@
                             <th>Salary</th>
                             <th>Commsion</th>
                             <th>Address</th>
-                            <th>car</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -88,7 +87,7 @@
         </div>
         <!-- Buttons to access new pages for each query -->
         <div class="container card border-primary mb-3">
-            <div class="card-header">Query</div>
+            <div class="card-header">Displaying special imformation about the employees</div>
             <div class="card-body">
                 <div class="form-group mx-sm-3 mb-2">
                     <button onclick="window.location.href='query1.php'" class="btn btn-outline-primary btn-lg">Employees That Work In Accounting, And Were Hired Between 1st June 1981 And 1st June 1982</button>

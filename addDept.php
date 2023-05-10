@@ -43,6 +43,9 @@ $connection=null;
                     <input type="submit" name="submit" class="btn btn-primary btn-md"><br>
                 </div>
             </form>
+            <div class="form-group mx-sm-3 mb-2">
+                    <button onclick="window.location.href='HelloSQL.php'" class="btn btn-primary btn-md">GO BACK TO THE PREIVOUS PAGE</button><br>
+                </div>
         </div>
     </div>
     </body>
