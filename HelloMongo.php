@@ -61,9 +61,11 @@
                             <th>Employee Name</th>
                             <th>Hire Date</th>
                             <th>Job</th>
+                            <th>Department</th>
                             <th>Salary</th>
                             <th>Commsion</th>
                             <th>Address</th>
+                            <th>Car</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,7 +77,31 @@
                         $collection = $db->EMPLOYEE;
                         $cursor = $collection->find();
                         foreach ($cursor as $document) {
-                            echo "<tr><td>".$document['ENAME']."</td><td>".$document['HIREDATE'] ."</td><td>".$document['Job']."</td><td>".$document['Salary']."</td><td>".$document['Commision']."</td><td>".$document['address']."</td></tr>";
+                            echo "<tr><td>".$document['ENAME']."</td><td>".$document['HIREDATE'] ."</td><td>".$document['Job']."</td>
+                            <td>";
+if (isset($document['Dept']) && $document['Dept'] !== null) {
+    echo $document['Dept']['DNAME'];
+    echo" - ";
+    echo $document['Dept']['Location'];
+
+
+} else {
+    echo "N/A";
+}
+echo "</td>
+                            <td>".$document['Salary']."</td><td>".$document['Commision']."</td><td>".$document['address']."</td><td>";
+if (isset($document['car']) && $document['car'] !== null) {
+    echo $document['car']['carMake'];
+    echo" - ";
+    echo $document['car']['carModel'];
+    echo" - ";
+    echo $document['car']['carColor'];
+
+
+} else {
+    echo "N/A";
+}
+echo "</td></tr>";
                         }
                         ?>
                     </tbody>
