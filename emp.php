@@ -42,21 +42,7 @@ if(isset($_POST['submit']))
             $carcolor=$row['carColor'];
             $car= (object)array("carMake"=>$carmake, "carModel"=>$carmodel, "carColor"=>$carcolor);
         }
-        else{
-            $car=null;
-        }
     }
-        // $sql="SELECT * FROM `car` WHERE CarID ='$selectioncar'";
-        // $resultset = $connection->prepare($sql);
-        // $resultset->execute();   
-        // $row = $resultset->fetchAll(PDO::FETCH_ASSOC);
-        // foreach($row as $rows)
-        // {
-        //     $carmake=$rows['carMake'];
-        //     $carmodel=$rows['carModel'];
-        //     $carcolor=$rows['carColor'];
-        //     $car= (object)array("carMake"=>$carmake, "carModel"=>$carmodel, "carColor"=>$carcolor);
-        // }
 
             $document = array( 
                 "ENAME" => $Ename, 
@@ -87,8 +73,8 @@ if(isset($_POST['submit']))
     </head>
     <body>
     <div class="container card border-primary mb-3">
-    <div class="card-header">Adding Employee TO Mongo Database</div>
-    <div class="card-body">
+        <div class="card-header">Adding Employee TO Mongo Database</div>
+        <div class="card-body">
             <form method="post" action="" autocomplete="off">
                 <div class="form-group mx-sm-3 mb-2">
                     <label for="ENAME">Employee Name:</label><br>
@@ -97,20 +83,19 @@ if(isset($_POST['submit']))
                 <div class="form-group mx-sm-3 mb-2">
                     <label>Employee Address:</label><br>
                     <select name="selectionAdd">
-                    <?php
-                    require_once __dir__ . '/vendor/autoload.php';
-                    $con = new MongoDB\Client("mongodb://localhost:27017");
-                    $db = $con->EMPDB;
-                    $collection = $db->EMPLOYEE;
-                   $distinctEnames = $collection->distinct('address', []);
-                   foreach ($distinctEnames as $ename) {
-                       ?>
-                       <option><?php echo $ename; ?></option>
-                       <?php
-                   }
-                    ?>
-                        </select>
-                    <br>
+                        <?php
+                            require_once __dir__ . '/vendor/autoload.php';
+                            $con = new MongoDB\Client("mongodb://localhost:27017");
+                            $db = $con->EMPDB;
+                            $collection = $db->EMPLOYEE;
+                            $distinctEnames = $collection->distinct('address', []);
+                            foreach ($distinctEnames as $ename) {
+                            ?>
+                            <option><?php echo $ename; ?></option>
+                            <?php
+                            }
+                        ?>
+                    </select>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
                     <label for="JOBID">Employee Job:</label><br>
@@ -125,32 +110,28 @@ if(isset($_POST['submit']))
                        ?>
                        <option><?php echo $ename; ?></option>
                        <?php
-                   }
+                    }
                     ?>
-                        </select>
-                    <br>
+                    </select>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
                     <label for="MGR">select Manager:</label><br>
                     <select name="selectionMGR">
-                    <?php
-                    $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');  
-                    require_once __dir__ . '/vendor/autoload.php';
-                    $con = new MongoDB\Client("mongodb://localhost:27017");
-                    $db = $con->EMPDB;
-                    $collection = $db->EMPLOYEE;
-                    $cursor = $collection->find();
-                    foreach($cursor as $row)
-                    {
-                        ?>
-                        <option><?php echo $row['ENAME']; ?></option>
                         <?php
-
-                    }
-                    
-                    ?>
-                        </select>
-                        <br>
+                            $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');  
+                            require_once __dir__ . '/vendor/autoload.php';
+                            $con = new MongoDB\Client("mongodb://localhost:27017");
+                            $db = $con->EMPDB;
+                            $collection = $db->EMPLOYEE;
+                            $cursor = $collection->find();
+                            foreach($cursor as $row)
+                            {
+                                ?>
+                                <option><?php echo $row['ENAME']; ?></option>
+                                <?php
+                            }
+                        ?>
+                    </select>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
                         <label for="HIREDATE">Hire date:</label><br>
@@ -167,21 +148,20 @@ if(isset($_POST['submit']))
                 <div class="form-group mx-sm-3 mb-2">
                         <label for="dept">Employee Department:</label><br>
                         <select name="selectionDEPT">
-                        <?php
-                        require_once __dir__ . '/vendor/autoload.php';
-                        $con = new MongoDB\Client("mongodb://localhost:27017");
-                        $db = $con->EMPDB;
-                        $collection = $db->Departments;
-                        $cursor = $collection->find();
-                        foreach($cursor as $row)
-                        {
-                            ?>
-                            <option value="<?php echo $row['_id']; ?>"><?php echo $row['DNAME']; ?> <?php echo $row['Location']; ?></option>
                             <?php
-                        }
-                        ?>
-                            </select>
-                            <br>
+                                require_once __dir__ . '/vendor/autoload.php';
+                                $con = new MongoDB\Client("mongodb://localhost:27017");
+                                $db = $con->EMPDB;
+                                $collection = $db->Departments;
+                                $cursor = $collection->find();
+                                foreach($cursor as $row)
+                                {
+                                    ?>
+                                    <option value="<?php echo $row['_id']; ?>"><?php echo $row['DNAME']; ?> <?php echo $row['Location']; ?></option>
+                                    <?php
+                                }
+                            ?>
+                        </select>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
                     <label for="car">Do you want to assign the employee a car?</label><br>
@@ -201,7 +181,6 @@ if(isset($_POST['submit']))
                             }
                         ?>
                     </select>
-                        <br>
                 </div>
                 <div class="form-group mx-sm-3 mb-2">
                     <input type="submit" name="submit" class="btn btn-primary btn-md"><br>
@@ -209,7 +188,7 @@ if(isset($_POST['submit']))
             </form>
             <div class="form-group mx-sm-3 mb-2">
                     <button onclick="window.location.href='HelloMongo.php'" class="btn btn-primary btn-md">GO BACK TO THE PREIVOUS PAGE</button><br>
-                </div>
+            </div>
         </div>
     </div>
     </body>
