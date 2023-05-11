@@ -23,7 +23,6 @@
                     <?php
                         /** Connection with postgresql **/
                         /** Connection with mysql **/
-                        //https://stackoverflow.com/questions/6882633/php-get-input-radio-selection-data-and-insert-into-mysql-table
                         $connection = new PDO("mysql:host=localhost;dbname=empdb", 'root', '');
                         /** Preparation and execution of the query **/
                             $sql="SELECT d.DNAME, sum(e.Salary)
